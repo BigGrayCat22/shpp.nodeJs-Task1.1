@@ -8,7 +8,7 @@ function createProducts() {
 
     allProducts.push(new Product(
         100,
-        "Футболка 'Classic White'",
+        "Фут 'Classic White'",
         "Простая белая футболка",
         19.99,
         "Fashion Brand",
@@ -162,11 +162,11 @@ function createProducts() {
     return allProducts;
 }
 
-function search(products, search) {
+function searchExt(products, search) {
     const result = [];
     for (const product of products) {
-        let prodName = product.getName();
-        let prodDes = product.getDescription();
+        const prodName = product.getName();
+        const prodDes = product.getDescription();
         if (prodName.indexOf(search) !== -1 || prodDes.indexOf(search) !== -1) {
             result.push(product);
         }
@@ -174,6 +174,39 @@ function search(products, search) {
     return result;
 }
 
+function search(products, search) {
+    const result = [];
+    const isStarAtLastIndex = search.indexOf('*') === search.length - 1;
+    let searchWord;
+    isStarAtLastIndex ? searchWord = search.slice(0, -1) : searchWord = search;
+
+    for (const product of products) {
+        const productNameWords = product.getName().split(' ');
+        const productDescriptionWords = product.getDescription().split(' ');
+
+        if (!isStarAtLastIndex) {
+            for (const word of productNameWords) {
+                if (word.includes(searchWord) && word.length === searchWord.length) {
+                    result.push(product);
+                    break;
+                }
+            }
+
+            for (const word of productDescriptionWords) {
+                if (word.includes(searchWord) && word.length === searchWord.length) {
+                    result.push(product);
+                    break;
+                }
+            }
+        } else {
+            if (productNameWords.some(word => word.includes(searchWord))
+                || productDescriptionWords.some(word => word.includes(searchWord))) {
+                result.push(product);
+            }
+        }
+    }
+    return result
+}
 function sort(products, sortRule) {
     const correctRules = ["id", "name", "price"];
     if (!correctRules.includes(sortRule)) {
@@ -200,8 +233,11 @@ function sort(products, sortRule) {
 
 // Main scope
 createProducts();
+
+
 console.log("----------Searcher!!!---------");
-console.log(search(allProducts, "Фут"));
+//console.log(searchExt(allProducts, "Фут"));
+console.log(search(allProducts, "Фут*"));
 console.log("----------Sorter1!!-----------");
 console.log(sort(allProducts, "id"));
 console.log("----------Sorter2!!-----------");
