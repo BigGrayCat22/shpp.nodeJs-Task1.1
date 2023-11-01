@@ -13,7 +13,7 @@ export { Product, reviews };
  * @param {string[]} sizes      Array of probably sizes
  * @param {string} activeSize   Active size
  * @param {number} quantity     Product quantity
- * @param {Date {date(YYYY-MM-dd hh:mm:ss)}} Date of operation
+ * @param {string} Date         Date of operation
  * @param {object[]} reviews    Buyer review's
  * @param {string[]} images     Product images
  */
