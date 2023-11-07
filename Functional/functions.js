@@ -25,7 +25,7 @@ function readCSVFromFile(filePath) {
  */
 function parseCSV(csv) {
     let counter = 0;
-    const resObject = csv.split('\n')
+    const resObject = csv.split(process.platform === "win32" ? "\r\n" : "\n")
         .filter(element => element.charAt(0) !== '#' && element.trim().length !== 0)
         .map(oneRow => {
             return oneRow.replace('#', '');

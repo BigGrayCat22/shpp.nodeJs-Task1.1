@@ -169,9 +169,8 @@ const methodsProduct = {
             if (review.rating.quality != undefined) {
                 averageQualityRating += review.rating.quality / reviewCount;
             }
-
-            return (averageServiceRating + averagePriceRating + averageValueRating + averageQualityRating) / 4;
         };
+        return (averageServiceRating + averagePriceRating + averageValueRating + averageQualityRating) / 4;
     },
 
 }

@@ -151,9 +151,8 @@ const methodsAbstractProduct = {
             if (review.rating.quality != undefined) {
                 averageQualityRating += review.rating.quality / reviewCount;
             }
-
-            return (averageServiceRating + averagePriceRating + averageValueRating + averageQualityRating) / 4;
         };
+        return (averageServiceRating + averagePriceRating + averageValueRating + averageQualityRating) / 4;
     },
     getFullInformation() {
         console.log(` ID = ${this.ID} `);
